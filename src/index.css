@@ -1,13 +1,379 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,500&display=swap');
+
+:root {
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-size: 16px;
+  font-weight: bold;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root,
+.app {
+  height: 100%;
+  background-color: #333;
+  color: white;
+}
+
+.app h1 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+ul,
+li {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+/* BUTTONS */
+button {
+  display: inline-block;
+
+  width: fit-content;
+  padding: 10px;
+  border: 2px solid #777;
+  border-radius: 4px;
+
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #777;
+}
+button:hover {
+  cursor: pointer;
+}
+button:active {
+  cursor: pointer;
+  filter: brightness(75%);
+}
+/* END BUTTONS */
+
+/* MODAL */
+.modal-click-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  min-height: 100vh;
+  height: 100%;
+  width: 100%;
+
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.modal-click-bg:hover {
+  cursor: pointer;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  border-radius: 4px;
+
+  overflow: hidden;
+  color: #333;
+  background-color: #ccc;
+}
+/* END MODAL */
+
+nav {
+  display: flex;
+  justify-content: flex-start;
+  height: fit-content;
+  background-color: #555;
+  padding: 0rem 1rem;
+}
+nav div.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 54px;
+  padding-right: 1rem;
+}
+nav ul {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+nav ul:first-of-type {
+  flex: 1;
+}
+nav ul li {
+  padding: 1rem;
+  background-color: #555;
+}
+nav ul a.active li {
+  background-color: #777;
+}
+nav ul li:hover {
+  cursor: pointer;
+  background-color: #777;
+}
+
+.page {
+  padding: 1rem;
+}
+.page > h1,
+.category > h2 {
+  text-align: center;
+}
+.page > .page-content {
+  width: 100%;
+  max-width: 1280px;
+  margin: auto;
+}
+
+.category {
+  margin-bottom: 1rem;
+}
+
+/* INFO HEADER */
+.info-header {
+  display: flex;
+  gap: 1rem;
+
+  margin-bottom: 1rem;
+}
+.info-header > :first-child {
+  flex: 1;
+  width: 100%;
+}
+.score-info {
+  display: grid;
+  grid-template-columns: 1fr 16px;
+  grid-auto-rows: fit-content;
+  column-gap: 1rem;
+
+  height: fit-content;
+
+  text-align: left;
+}
+/* END INFO HEADER */
+
+.product-card-list {
+  display: flex;
+  gap: 1rem;
+
+  height: fit-content;
+  width: fit-content;
+  margin: auto;
+  padding: 1rem;
+
+  background-color: black;
+}
+.product-card {
+  width: fit-content;
+  max-width: 288px;
+  outline: 2px solid #aaa;
+  background-color: black;
+}
+.product-card .img-container {
+  position: relative;
+  width: 100%;
+  height: 288px;
+  width: 288px;
+  background-color: black;
+  overflow: hidden;
+}
+.product-card img {
+  /* position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  transition: transform 0.2s ease-in-out;
+}
+.product-card img:hover {
+  cursor: pointer;
+  transform: scale(1.5);
+}
+.product-card > .card-info {
+  width: 100%;
+  padding: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.product-card > .card-info > h2 {
+  height: 32px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.product-card > .card-info > h4 {
+  font-size: 0.75rem;
+  text-align: right;
+}
+.product-card > .card-info > h4 > span {
+  color: red;
+}
+
+.product-details {
+  display: grid;
+  grid-template-columns: 512px 1fr;
+  width: 100%;
+  height: fit-content;
+  background-color: #555;
+}
+.product-details .details {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.image-carousel {
+  position: relative;
+  max-width: 512px;
+  min-height: 512px;
+  background-color: #000;
+}
+.image-carousel > button {
+  height: 48px;
+  width: 48px;
+  border: 0px;
+  border-radius: 50%;
+  background-color: #777;
+}
+.image-carousel > button:nth-of-type(1) {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(50%, -50%);
+}
+.image-carousel > button:nth-of-type(2) {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(-50%, -50%);
+}
+.image-carousel > img {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.image-carousel .select-image-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+}
+.image-carousel .select-image-buttons > button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 24px;
+  width: 24px;
+  border: 0px;
+  border-radius: 50%;
+  background-color: #777;
+}
+.image-carousel .select-image-buttons > button.active {
+  background-color: red;
+}
+.image-carousel > button:hover,
+.image-carousel .select-image-buttons > button:hover,
+.image-carousel .select-image-buttons > button.active:hover {
+  filter: brightness(120%);
+}
+
+.cart {
+  margin: auto;
+  border: 1px solid white;
+  width: 100%;
+  max-width: 1280px;
+}
+.cart th,
+.cart td {
+  width: fit-content;
+  padding: 0.25rem;
+  border: 1px solid white;
+}
+.cart-item {
+  gap: 1rem;
+  margin: auto;
+  background-color: #444;
+}
+.cart-item:nth-child(2n) {
+  background-color: #666;
+}
+.checkout-button {
+  margin-top: 2rem;
+  float: right;
+}
+
+@media (max-width: 600px) {
+  :root {
+    font-size: 14px;
+  }
+
+  .info-header {
+    flex-direction: column;
+  }
+
+  .card-grid {
+    grid-template-columns: repeat(auto-fit, 64px);
+    grid-auto-rows: 64px;
+    gap: 0.25rem;
+
+    padding: 0.25rem;
+  }
+
+  .card h5 {
+    display: none;
+  }
+}
+
+.invert {
+  filter: brightness(0) invert(1);
+}
+
+.hidden {
+  display: none;
+}
+
+.discount {
+  color: green;
+}
+
+.fill {
+  width: 100%;
+}
+
+.fit-content {
+  width: fit-content;
 }
